@@ -5,7 +5,7 @@ const TodoItem = (props) => {
     const {dispatch} = useContext(TodoContext);
 
     const handleDelete = () => {
-        dispatch({type: "DELETE", payload: props.id})
+        dispatch({type: "DELETE", payload: props.todoItem.id})
     }
 
 
