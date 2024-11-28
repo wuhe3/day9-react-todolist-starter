@@ -2,11 +2,11 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 export const initialState = [
-    {id: uuidv4(), text: "the first todo", done: false},
-    {id: uuidv4(), text: "the second todo", done: false},
-    {id: uuidv4(), text: "the third todo", done: false},
-    {id: uuidv4(), text: "the fourth todo", done: false},
-    {id: uuidv4(), text: "the fifth todo", done: false},
+    // {id: uuidv4(), text: "the first todo", done: false},
+    // {id: uuidv4(), text: "the second todo", done: false},
+    // {id: uuidv4(), text: "the third todo", done: false},
+    // {id: uuidv4(), text: "the fourth todo", done: false},
+    // {id: uuidv4(), text: "the fifth todo", done: false},
 ];
 
 export const todoReducer = (state, action) => {

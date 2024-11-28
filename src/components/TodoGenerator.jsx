@@ -2,7 +2,7 @@ import {useContext, useState} from "react";
 import {TodoContext} from "../App";
 
 const TodoGenerator = () => {
-    const [text, setText] = useState();
+    const [text, setText] = useState("");
     const {dispatch} = useContext(TodoContext);
 
     const handleChange = (event) => {
@@ -12,6 +12,7 @@ const TodoGenerator = () => {
     const handleAdd = () => {
         if (text !== null) {
             dispatch({type: "ADD", payload: text});
+            setText("");
         }
     }
 
