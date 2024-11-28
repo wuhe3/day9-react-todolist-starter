@@ -1,5 +1,7 @@
 import {useContext} from 'react';
 import {TodoContext} from "../App";
+import './TodoItem.css';
+
 
 const TodoItem = (props) => {
     const {dispatch} = useContext(TodoContext);
@@ -13,8 +15,9 @@ const TodoItem = (props) => {
     }
 
     return (
-        <div>
-            <span onClick={handleToggle} style={{textDecoration: props.todoItem.done ? 'line-through' : 'none'}}>
+        <div className="todo-item-container">
+            <span onClick={handleToggle} className="todo-item-wrapper"
+                  style={{textDecoration: props.todoItem.done ? 'line-through' : 'none'}}>
                 {props.todoItem.text}
             </span>
             <button onClick={handleDelete}>
