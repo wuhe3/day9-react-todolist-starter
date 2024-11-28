@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import {useContext, useState} from "react";
 import {TodoContext} from "../App";
 
 const TodoGenerator = () => {
@@ -10,8 +10,11 @@ const TodoGenerator = () => {
     }
 
     const handleAdd = () => {
-        dispatch({type: "ADD", payload: text})
+        if (text !== null) {
+            dispatch({type: "ADD", payload: text})
+        }
     }
+
 
     return (
         <div>
