@@ -8,11 +8,18 @@ const TodoItem = (props) => {
         dispatch({type: "DELETE", payload: props.todoItem.id})
     }
 
+    const handleToggle = () => {
+        dispatch({type: "TOGGLE", payload: props.todoItem.id})
+    }
 
     return (
         <div>
-            <span>{props.todoItem.text}</span>
-            <button onClick={handleDelete}>x</button>
+            <span onClick={handleToggle} style={{textDecoration: props.todoItem.done ? 'line-through' : 'none'}}>
+                {props.todoItem.text}
+            </span>
+            <button onClick={handleDelete}>
+                x
+            </button>
         </div>
 
     )
