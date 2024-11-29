@@ -3,6 +3,7 @@ import {TodoContext} from "../App";
 import './TodoItem.css';
 import {ActionEnum} from "../enums/ActionEnum";
 import {deleteTodoItem, toggleTodoItem} from "../api/todo";
+import {DeleteOutlined} from "@ant-design/icons";
 
 const TodoItem = (props) => {
     const {dispatch} = useContext(TodoContext);
@@ -32,8 +33,8 @@ const TodoItem = (props) => {
                   className={`todo-item-wrapper ${done ? "done" : ""}`}>
                 {text}
             </span>
-            <button  onClick={handleDelete}>
-                x
+            <button onClick={handleDelete}>
+                <DeleteOutlined/>
             </button>
         </div>
     )
