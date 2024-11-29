@@ -1,6 +1,7 @@
 import {useContext} from 'react';
 import {TodoContext} from "../App";
 import './TodoItem.css';
+import {ActionEnum} from "../enum/ActionEnum";
 
 
 const TodoItem = (props) => {
@@ -8,11 +9,11 @@ const TodoItem = (props) => {
     const {done, text, id} = props.todoItem;
 
     const handleDelete = () => {
-        dispatch({type: "DELETE", payload: id})
+        dispatch({type: ActionEnum.DELETE, payload: id})
     }
 
     const handleToggle = () => {
-        dispatch({type: "TOGGLE", payload: id})
+        dispatch({type: ActionEnum.TOGGLE, payload: id})
     }
 
     return (
