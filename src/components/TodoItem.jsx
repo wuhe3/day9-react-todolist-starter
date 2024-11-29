@@ -1,4 +1,4 @@
-import {useContext, useEffect} from 'react';
+import {useContext} from 'react';
 import {TodoContext} from "../App";
 import './TodoItem.css';
 import {ActionEnum} from "../enums/ActionEnum";
@@ -8,10 +8,13 @@ const TodoItem = (props) => {
     const {dispatch} = useContext(TodoContext);
     const {done, text, id} = props.todoItem;
 
-    const handleDelete = () => {
-        deleteTodoItem(id).then(() => {
-            dispatch({type: ActionEnum.DELETE, payload: id})
-        });
+    const handleDelete = async () => {
+        try {
+            await deleteTodoItem(id);
+            dispatch({type: ActionEnum.DELETE, payload: id});
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     const handleToggle = () => {
