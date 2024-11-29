@@ -12,12 +12,15 @@ const TodoGenerator = () => {
         setText(event.target.value);
     }
 
-    const handleAdd = () => {
-        if (text !== null) {
-            addTodoItem({id: Date.now(), text: text, done: false}).then((todoItem) => {
-                dispatch({type: ActionEnum.ADD, payload: text});
+    const handleAdd = async () => {
+        try {
+            if (text !== null) {
+                const response = await addTodoItem({id: null, text: text, done: false});
+                dispatch({type: ActionEnum.ADD, payload: response});
                 setText("");
-            });
+            }
+        } catch (error) {
+            console.error(error);
         }
     }
 
