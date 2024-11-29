@@ -1,5 +1,4 @@
-export const initialState = [
-];
+export const initialState = [];
 
 export const todoReducer = (state, action) => {
     switch (action.type) {
@@ -10,6 +9,8 @@ export const todoReducer = (state, action) => {
         case "TOGGLE":
             return state.map(todoItem =>
                 todoItem.id === action.payload ? {...todoItem, done: !todoItem.done} : todoItem)
+        case "INIT":
+            return action.payload
         default:
             return state
     }
