@@ -1,7 +1,7 @@
 import {useContext} from 'react';
 import {TodoContext} from "../App";
 import './TodoItem.css';
-import {ActionEnum} from "../enum/ActionEnum";
+import {ActionEnum} from "../enums/ActionEnum";
 
 
 const TodoItem = (props) => {
@@ -19,7 +19,7 @@ const TodoItem = (props) => {
     return (
         <div className="todo-item-container">
             <span onClick={handleToggle}
-                  className={`todo-item-wrapper ${done ? " done" : ""}`}>
+                  className={`todo-item-wrapper ${done ? "done" : ""}`}>
                 {text}
             </span>
             <button onClick={handleDelete}>
