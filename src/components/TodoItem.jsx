@@ -2,7 +2,7 @@ import {useContext} from 'react';
 import {TodoContext} from "../App";
 import './TodoItem.css';
 import {ActionEnum} from "../enums/ActionEnum";
-import {deleteTodoItem} from "../api/todo";
+import {deleteTodoItem, toggleTodoItem} from "../api/todo";
 
 const TodoItem = (props) => {
     const {dispatch} = useContext(TodoContext);
@@ -17,8 +17,13 @@ const TodoItem = (props) => {
         }
     }
 
-    const handleToggle = () => {
-        dispatch({type: ActionEnum.TOGGLE, payload: id})
+    const handleToggle = async () => {
+        try {
+            await toggleTodoItem(id);
+            dispatch({type: ActionEnum.TOGGLE, payload: id})
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (

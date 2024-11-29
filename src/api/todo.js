@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: 'https://67495c81868020296630ab02.mockapi.io/todo/',
-    timeout: 5000
+    baseURL: 'https://67495c81868020296630ab02.mockapi.io/todo/', timeout: 5000
 })
 
 export const getTodoList = async () => {
@@ -17,4 +16,11 @@ export const addTodoItem = async (todoItem) => {
 
 export const deleteTodoItem = async (id) => {
     await instance.delete(`/TodoItem/${id}`)
+}
+
+export const toggleTodoItem = async (id) => {
+    const todoItem = await instance.get(`/TodoItem/${id}`)
+    await instance.put(`/TodoItem/${id}`, {
+        ...todoItem.data, done: !todoItem.data.done
+    })
 }
