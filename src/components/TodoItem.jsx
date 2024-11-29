@@ -32,11 +32,10 @@ const TodoItem = (props) => {
                   className={`todo-item-wrapper ${done ? "done" : ""}`}>
                 {text}
             </span>
-            <button onClick={handleDelete}>
+            <button  onClick={handleDelete}>
                 x
             </button>
         </div>
-
     )
 }
 
