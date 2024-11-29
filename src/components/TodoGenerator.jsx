@@ -20,7 +20,7 @@ const TodoGenerator = () => {
 
     return (
         <div>
-            <input value={text} onChange={handleChange}/>
+            <input max={100} value={text} onChange={handleChange}/>
             <button className="add-button" onClick={handleAdd}>add</button>
         </div>
     );
