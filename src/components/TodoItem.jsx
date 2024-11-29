@@ -18,8 +18,8 @@ const TodoItem = (props) => {
 
     return (
         <div className="todo-item-container">
-            <span onClick={handleToggle} className="todo-item-wrapper"
-                  style={{textDecoration: done ? 'line-through' : 'none'}}>
+            <span onClick={handleToggle}
+                  className={`todo-item-wrapper ${done ? " done" : ""}`}>
                 {text}
             </span>
             <button onClick={handleDelete}>

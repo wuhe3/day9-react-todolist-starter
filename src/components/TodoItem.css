@@ -12,3 +12,7 @@
     border-radius: 5px;
     flex: fit-content;
 }
+
+.done {
+    text-decoration: line-through;
+}
