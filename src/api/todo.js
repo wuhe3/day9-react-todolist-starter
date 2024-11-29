@@ -13,3 +13,7 @@ export const getTodoList = async () => {
 export const addTodoItem = async (todoItem) => {
     await instance.post("/TodoItem", todoItem)
 }
+
+export const deleteTodoItem = async (id) => {
+    await instance.delete(`/TodoItem/${id}`)
+}
