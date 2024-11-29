@@ -2,6 +2,7 @@ import {useContext, useState} from "react";
 import {TodoContext} from "../App";
 import './TodoGenerator.css';
 import {ActionEnum} from "../enums/ActionEnum";
+import {addTodoItem} from "../api/todo";
 
 const TodoGenerator = () => {
     const [text, setText] = useState("");
@@ -13,11 +14,12 @@ const TodoGenerator = () => {
 
     const handleAdd = () => {
         if (text !== null) {
-            dispatch({type: ActionEnum.ADD, payload: text});
-            setText("");
+            addTodoItem({id: Date.now(), text: text, done: false}).then((todoItem) => {
+                dispatch({type: ActionEnum.ADD, payload: text});
+                setText("");
+            });
         }
     }
-
 
     return (
         <div>
