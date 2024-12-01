@@ -24,3 +24,7 @@ export const toggleTodoItem = async (id) => {
         ...todoItem.data, done: !todoItem.data.done
     })
 }
+
+export const editTodoItem = async (id, newText) => {
+    return await instance.put(`/TodoItem/${id}`, {text: newText})
+}

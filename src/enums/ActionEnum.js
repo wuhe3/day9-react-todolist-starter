@@ -2,5 +2,6 @@ export const ActionEnum = {
     ADD: "ADD",
     TOGGLE: "TOGGLE",
     DELETE: "DELETE",
-    INIT: "INIT"
+    INIT: "INIT",
+    EDIT: "EDIT"
 }

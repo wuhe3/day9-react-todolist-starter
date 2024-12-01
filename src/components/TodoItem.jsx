@@ -1,13 +1,16 @@
-import {useContext} from 'react';
+import {useContext, useState} from 'react';
 import {TodoContext} from "../App";
 import './TodoItem.css';
 import {ActionEnum} from "../enums/ActionEnum";
-import {deleteTodoItem, toggleTodoItem} from "../api/todo";
-import {DeleteOutlined} from "@ant-design/icons";
+import {deleteTodoItem, toggleTodoItem, editTodoItem} from "../api/todo";
+import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
 
 const TodoItem = (props) => {
     const {dispatch} = useContext(TodoContext);
     const {done, text, id} = props.todoItem;
+
+    const [isEditing, setIsEditing] = useState(false);
+    const [newText, setNewText] = useState(text);
 
     const handleDelete = async () => {
         try {
@@ -27,6 +30,25 @@ const TodoItem = (props) => {
         }
     }
 
+    const handleEdit = () => {
+        setIsEditing(true);
+    }
+
+    const handelCancel = () => {
+        setIsEditing(false);
+        setNewText(text);
+    }
+
+    const handelSave = async () => {
+        try {
+            await editTodoItem(id, newText);
+            dispatch({type: ActionEnum.EDIT, payload: {id, newText}});
+            setIsEditing(false);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     return (
         <div className="todo-item-container">
             <span onClick={handleToggle}
@@ -36,6 +58,19 @@ const TodoItem = (props) => {
             <button onClick={handleDelete}>
                 <DeleteOutlined/>
             </button>
+            <button onClick={handleEdit}>
+                <EditOutlined/>
+            </button>
+
+            {isEditing &&
+                (<div>
+                        <input type="text" value={newText} onChange={(e) => setNewText(e.target.value)}/>
+                        <button onClick={handelSave}>Save</button>
+                        <button onClick={handelCancel}>Cancel</button>
+                </div>
+                )
+            }
+
         </div>
     )
 }
