@@ -62,14 +62,17 @@ const TodoItem = (props) => {
                 <EditOutlined/>
             </button>
 
-            {isEditing &&
-                (<div>
-                        <input type="text" value={newText} onChange={(e) => setNewText(e.target.value)}/>
-                        <button onClick={handelSave}>Save</button>
-                        <button onClick={handelCancel}>Cancel</button>
+            {isEditing && (
+                <div>
+                    <input
+                        type="text"
+                        value={newText}
+                        onChange={(e) => setNewText(e.target.value)}
+                    />
+                    <button onClick={handelSave}>Save</button>
+                    <button onClick={handelCancel}>Cancel</button>
                 </div>
-                )
-            }
+            )}
 
         </div>
     )
