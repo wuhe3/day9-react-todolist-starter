@@ -4,6 +4,7 @@ import './TodoItem.css';
 import {ActionEnum} from "../enums/ActionEnum";
 import {deleteTodoItem, toggleTodoItem, editTodoItem} from "../api/todo";
 import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
+import {Modal, Input, Button} from 'antd';
 
 const TodoItem = (props) => {
     const {dispatch} = useContext(TodoContext);
@@ -34,12 +35,12 @@ const TodoItem = (props) => {
         setIsEditing(true);
     }
 
-    const handelCancel = () => {
+    const handleCancel = () => {
         setIsEditing(false);
         setNewText(text);
     }
 
-    const handelSave = async () => {
+    const handleSave = async () => {
         try {
             await editTodoItem(id, newText);
             dispatch({type: ActionEnum.EDIT, payload: {id, newText}});
@@ -62,18 +63,21 @@ const TodoItem = (props) => {
                 <EditOutlined/>
             </button>
 
-            {isEditing && (
-                <div>
-                    <input
-                        type="text"
-                        value={newText}
-                        onChange={(e) => setNewText(e.target.value)}
-                    />
-                    <button onClick={handelSave}>Save</button>
-                    <button onClick={handelCancel}>Cancel</button>
-                </div>
-            )}
-
+            <Modal
+                title="Edit Todo Item"
+                open={isEditing}
+                onOk={handleSave}
+                onCancel={handleCancel}
+                footer={[
+                    <Button key="back" onClick={handleCancel}>
+                        Cancel
+                    </Button>,
+                    <Button key="submit" type="primary" onClick={handleSave}>
+                        Save
+                    </Button>
+                ]}>
+                <Input value={newText} onChange={(e) => setNewText(e.target.value)}/>
+            </Modal>
         </div>
     )
 }
